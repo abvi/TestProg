@@ -1,0 +1,17 @@
+[ "GP11_MATHS_ADDSUBTRACTSIMPLE_WORDPROBLEMS_CC", "Word Problem Plus Minus Basic", "subtractionsimpleicon" ],
+[ "GP3_MATHS_ADDITIONSIMPLE_STD1", "Eat The Sums", "additionadvancedicon" ],
+[ "GP2_MATHS_MENTALARITHMETICSIMPLE_STD1", "Simple Mind Magic", "additionadvancedicon" ],
+
+[ "GP2_MATHS_ADDITIONCOMMASSOC_CC", "Associate It", "additionsimpleicon" ],
+[ "GP11_MATHS_ADD3NUMBERS_WORDPROBLEMS_CC", "Thrice the Word Problem", "fournumberadditionicon" ],
+[ "GP10_MATHS_COMPLETENUMERICPATTERNS_STD1", "Fill The Sequence", "subtractionadvancedicon" ],
+[ "GP3_MATHS_ADDSUBTRACTBASIC_CC", "Add Subtract Basic", "addsubtracticon" ],
+[ "GP1_MATHS_TRUEFALSEEXPRESSIONS_CC", "True or False Basic", "addsubtracticon" ],
+
+[ "GP11_MATHS_VISUALCOUNTING_CC", "Count Them All", "addsubtracticon" ],
+[ "GP1_MATHS_COMPARENUMBERSTWODIGIT_CC", "Compare Numbers Easy", "addsubtracticon" ],
+[ "GP7_MATHS_FILLTENSONES_CC", "Fill with Tens and Ones", "addsubtracticon" ],
+
+[ "GP2_MATHS_ADDSUB10_CC", "Add or Subtract Ten", "addsubtracticon" ],
+[ "GP2_MATHS_SUBTRACTIONSIMPLE_STD1", "Simply Minus", "addsubtracticon" ],
+[ "GP10_MATHS_COMPLETESUBTRACTION_STD2", "Minus Magic", "addsubtracticon" ]

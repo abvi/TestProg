@@ -1,0 +1,103 @@
+
+Please use this Google doc to code during your interview. To make hands free coding a little easier, we recommend that you use a headset or a phone with speaker option.
+
+Best,
+Google Staffing
+
+“Not Quite Scrabble” - Imagine you’re given a dictionary of valid words, and an array of character “tiles”. Write a function that produces the list of all the longest-length words in the dictionary that can be produced using only those tiles. Optimize for single-run (i.e. imagine that the tiles and dictionary may be different for every call).
+
+Example:
+Dictionary -> [‘APPLE’, ‘APE’, ‘LAP’, ‘PALE’, ‘PEAL’, ‘PEEL’, ‘LEAP’]
+Tiles -> [ALEPXSG]
+Result -> ‘PALE’, ‘PEAL’, ‘LEAP’
+
+
+// letter -> freq
+typedef map<char, int> LetterFreq;
+
+LetterFreq tileFreq;
+
+void getLF(const string& str, LetterFreq& lf)
+{
+	int len = str.size();
+	for (int i =0;i < len; i++)
+	{
+		char c = str[i];
+		if (lf.find(c) != lf.end())
+		{
+			lf[c]++;
+		}
+		else
+		{
+			lf[c] = 1;
+		}
+	}
+}
+
+// lf2 = tiles, lf1 = word
+bool isWordContainedInTiles(const LetterFreq& lf1, const LetterFreq& lf2)
+{
+	typedef LetterFreq::iterator lfIt;
+	int numStarTilesLeft = (lf2.find(‘*’) != lf2.end()? lf[‘*’] : 0);
+	for (lfIt it = lf1.begin(); it != lf1.end(); it++)
+	{
+		if (lf2.find(it->first) == lf2.end || lf2[it->first] >= it->second)
+		{
+			if (numStarTilesLeft > 0)
+			{
+				numStarTilesLeft--;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+void PrintLongestLengthWords(vector<string>& dict, string& tiles)
+{
+	//dict = sort(dict, sortByLen); // O(nlogn*m)
+
+	typedef vector<string>::iterator strIt;
+
+	LetterFreq tileFreq;
+	getLF(tiles, tileFreq); // O(m) ← number of tiles
+
+	int longestWordLen = -1;
+	for (strIt it = dict.begin(); it !=dict.end(); it++) // O(n)
+	{
+		if ((*it).size() > tiles.size())
+		{
+			continue;
+		}
+
+LetterFreq wordFreq;
+getLF(*it, wordFreq);
+if (isWordContainedInTiles(wordFreq, tileFreq) && // O(m)
+(longestWordLen == -1 || longestWordLen == (*it).size()))
+{
+	printf(“%s\n”, *it.c_str());
+	longestWordLen = (*it).size();
+}
+
+if (longestWordLen > (*it).size())
+{
+	break;
+}
+	}
+}
+
+O(nlogn
+
+)
+
+tiles = abc**
+
+word= dcb
+
+tiles = [‘a’=>1, ‘b’=>1, ‘c’=>1, ‘*’=>2]
+word = d=>1, c=>1, b=>1
+
+dsantoro@google.com

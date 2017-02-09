@@ -4,6 +4,8 @@
 #include <set>
 #include <string>
 
+#include <stdlib.h>
+
 const int NUMROWS = 3;
 const int NUMCOLS = 3;
 
@@ -114,6 +116,35 @@ std::string FormatColor(char rgb[3])
 	return toHex(rgb[2]) + toHex(rgb[1]) + toHex(rgb[0]);
 }
 
+// Problem 20.2 from Cracking the Coding Interview
+// Write a function to shuffle a deck of cards (array) such that each permutation is equally likely
+int *ShuffleArray(int arr[], int numElts)
+{
+	for (int leftEdge = 0; leftEdge < numElts; leftEdge++)
+	{
+		// pick a random element from the array, excluding dead elements
+		int pickIndex = leftEdge + 1 + (rand() % (numElts - leftEdge - 1));
+
+		// swap that element with the element at the left edge
+		int leftElt = arr[leftEdge];
+		arr[leftEdge] = arr[pickIndex];
+		arr[pickIndex] = leftElt;
+
+		// move the left edge along
+		leftEdge++;
+	}
+
+	return arr;
+}
+
+void Print1DArr(int arr[], int numElts)
+{
+	for (int i = 0; i < numElts; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+}
+
 int main()
 {
 	/*
@@ -131,6 +162,11 @@ int main()
 	printf("This machine is %s", IsBigEndian()? "big endian" : "little endian");
 	*/
 
-	char arr[3] = { 0xff, 0xff, 0xff };
-	printf("Formatted color=%s\n", FormatColor(arr).c_str());
+	//char arr[3] = { 0xff, 0xff, 0xff };
+	//printf("Formatted color=%s\n", FormatColor(arr).c_str());
+
+	int arr[] = { 3, 4, 5, 16 };
+	int numElts = sizeof(arr)/sizeof(int);
+	Print1DArr(ShuffleArray(arr, numElts), numElts);
+	printf("\n");
 }

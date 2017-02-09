@@ -73,6 +73,23 @@ int FindExchangeIndex(int index, std::vector<int>& wordLengths)
 }
 */
 
+bool hasAllUnique(string& str)
+{
+	set<char> seenChars;
+	for (int i = 0; i < str.length(); i++)
+	{
+		char c = str[i];
+		if (seenChars.contains(c))
+		{
+			return false;
+		}
+
+		seenChars.push(c);
+	}
+
+	return seenChars;
+}
+
 void test()
 {
 	std::vector<int> intVec;
@@ -224,6 +241,40 @@ void PrintAllValidAnagrams(string& str, set<string> dict)
 	}
 }
 
+string ReplaceAllSpacesWithPct20(const string& str)
+{
+	// first count the number of spaces in the string
+	int len = str.length();
+	int numSpaces = 0;
+	for (int i = 0; i < len; i++)
+	{
+		if (str[i] == ' ')
+		{
+			numSpaces++;
+		}
+	}
+
+	string retVal;
+	retVal.resize(len + numSpaces * 2);  // 3 characters per string
+	for (int i = 0, j = 0; i < len; i++)
+	{
+		if (str[i] == ' ')
+		{
+			//printf("Replacing space with %%20\n");
+			retVal[j++] = '%';
+			retVal[j++] = '2';
+			retVal[j++] = '0';
+		}
+		else
+		{
+			//printf("Copying %c\n", str[i]);
+			retVal[j++] = str[i];
+		}
+	}
+
+	return retVal;
+}
+
 int main()
 {
 	printf("Running string\n");
@@ -260,6 +311,7 @@ int main()
 	printf("After removing duplicate chars, str=%s", str.c_str());
 	*/
 
+	/* AV:
 	std::string str("abc");
 	// AV: std::vector<std::string> vec = GetPermutations(str);
 	std::vector<std::string> vec = GetAllPermutations(str);
@@ -267,6 +319,12 @@ int main()
 	{
 		printf("%s\n", vec[i].c_str());
 	}
+	*/
+
+	printf("Enter a string in which to replace spaces with %%20:\n");
+	char inputStr[256];
+	fgets(inputStr, 256, stdin);
+	printf("Replacement string = %s\n", ReplaceAllSpacesWithPct20(string(inputStr)).c_str());
 
 	return 0;
 }

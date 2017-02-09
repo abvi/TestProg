@@ -1,6 +1,9 @@
 #include <cstdio>
 
 #include <vector>
+#include <set>
+
+using namespace std;
 
 struct node
 {
@@ -192,10 +195,36 @@ void PrintLinkedList(node *head)
 	}
 }
 
+void RemoveDuplicates(node *head)
+{
+	set<int> seenValues;
+	node *cur = head;
+	node *prev = NULL;
+	while (cur != NULL)
+	{
+		if (seenValues.find(cur->data) != seenValues.end())
+		{
+			// seen before
+			if (prev)
+			{
+				prev->next = cur->next;
+			}
+			cur = cur->next;
+		}
+		else
+		{
+			seenValues.insert(cur->data);
+			prev = cur;
+			cur = cur->next;
+		}
+	}
+}
+
 int main()
 {
 	printf("Running linkedlist program\n");
 
+	/* AV:
 	int num1[] = {0,9,4};
 	std::vector<int> arr1(num1, num1+sizeof(num1)/sizeof(num1[0]));
 
@@ -212,6 +241,14 @@ int main()
 	printf(" = ");
 	node *sum = AddNumbers(list1, list2);
 	PrintLinkedList(sum);
+	*/
+
+	int num3[] = {0,9,4,9,0,4,1,2};
+	std::vector<int> arr3(num3, num3+sizeof(num3)/sizeof(num3[0]));
+
+	node *list3 = CreateLinkedList(arr3);
+	RemoveDuplicates(list3);
+	PrintLinkedList(list3);
 
 	return 1;
 }
